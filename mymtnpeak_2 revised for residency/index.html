@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MTN Peak Poster</title>
+  <link rel="stylesheet" href="style.css" />
+  <audio id="ufoSound" src="ce.mp3"></audio>
+  <audio id="boingSound" src="boing.mp3"></audio>
+  <audio id="whooshSound" src="whoosh.mp3"></audio>
+</head>
+<body>
+  <div class="bg bg-day" aria-hidden="true"></div>
+  <div class="bg bg-night" aria-hidden="true"></div>
+
+  <div class="shooting-stars" aria-hidden="true">
+    <span class="shooting-star star-1"></span>
+    <span class="shooting-star star-2"></span>
+    <span class="shooting-star star-3"></span>
+  </div>
+
+  <div class="ufo" aria-hidden="true">
+    <img src="./ufo.png" alt="">
+  </div>
+
+  <main class="poster">
+    <p class="top-title">
+      My object is More ThaN a MouNtaiN. IT represeNTs My aspiraTioNs. by Alex ArellaNo
+    </p>
+
+    <div class="left-copy left-copy-1">
+      <p>
+        As soMeoNe who lived half My life iN el paso, I see More thaN a MouNTaiN.
+        I see a large, hard, aNd eNduriNg sTructure ThaT represents The TraNquility
+        I experieNced every day while growing up.
+      </p>
+    </div>
+
+    <div class="left-copy left-copy-2">
+      <p>
+        IT sTaNds as a fouNdaTion of where My pareNTs came froM aNd where I come froM.
+      </p>
+    </div>
+
+    <div class="left-copy left-copy-3">
+      <p>
+        ReflecTing oN My experieNces, I’ve come To uNdersTaNd ThaT There is More iN
+        whaT we doN’T immediaTely see ThaN iN whaT staNds before us.
+      </p>
+    </div>
+
+    <div class="left-copy left-copy-4">
+      <p>
+        Knowing ThaT This greaT view oNce beloNged To aNoTher couNTry, iT’s hard NoT
+        To ThiNk abouT The Mexican iNflueNce iT quieTly coMMuNicaTes. The rock
+        forMaTioNs aNd shifTing color paTTerNs iN the dusk Twilight reveal iTs
+        origiNs—sTill preseNT, eveN ThousaNds of years later. Like I said, iT's More
+        thaN a MouNTaiN. IT's whaT I was. WhaT I aM. WhaT I will becoMe.
+      </p>
+    </div>
+
+    <section class="type-lockup" aria-label="MTN PEAK">
+      <div class="row row-top">
+        <span class="glyph m-hover" data-copy="left-copy-1">
+          M
+          <img src="me1.jpg" class="hover-photo" alt="Photo">
+        </span>
+
+        <span class="glyph t-hover trigger-glyph-t" data-copy="left-copy-2" title="Click T">
+          T
+          <img src="me2.jpg" class="hover-photo" alt="Photo">
+        </span>
+
+        <span class="glyph n-hover" data-copy="left-copy-3">
+          N
+          <img src="me3.jpg" class="hover-photo" alt="Photo">
+        </span>
+      </div>
+
+      <div class="row row-bottom">
+        <span class="glyph p-hover trigger-glyph" data-copy="left-copy-4" title="Click P">
+          P
+          <img src="me4.jpg" class="hover-photo" alt="Photo">
+        </span>
+
+        <span class="glyph e-hover" data-copy="left-copy-1">
+          E
+          <img src="me5.jpg" class="hover-photo" alt="Photo">
+        </span>
+
+        <span class="glyph a-hover" data-copy="left-copy-2">
+          A
+          <img src="me6.jpg" class="hover-photo" alt="Photo">
+        </span>
+
+        <span class="glyph k-hover k-glyph" data-copy="left-copy-3" title="Click K">
+          K
+          <img src="me7.jpg" class="hover-photo" alt="Photo">
+        </span>
+      </div>
+    </section>
+  </main>
+
+  <div class="tank-effect" aria-hidden="true">
+    <img src="lovetank.png" class="tank-image" alt="">
+    <span class="flower-burst flower-burst-1"><img src="flowers.png" alt=""></span>
+    <span class="flower-burst flower-burst-2"><img src="flowers.png" alt=""></span>
+    <span class="flower-burst flower-burst-3"><img src="flowers.png" alt=""></span>
+    <span class="flower-burst flower-burst-4"><img src="flowers.png" alt=""></span>
+    <span class="flower-burst flower-burst-5"><img src="flowers.png" alt=""></span>
+  </div>
+
+  <div class="riding-effect" aria-hidden="true">
+    <img src="riding.png" alt="">
+  </div>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".top-title, .left-copy p").forEach((el) => {
+        el.innerHTML = el.textContent.replace(/([A-Z])/g, '<span class="peak">$1</span>');
+      });
+
+      const glyphs = document.querySelectorAll(".glyph");
+      const copies = document.querySelectorAll(".left-copy");
+
+      glyphs.forEach((glyph) => {
+        glyph.addEventListener("mouseenter", () => {
+          copies.forEach((copy) => copy.classList.remove("is-visible"));
+          const target = document.querySelector("." + glyph.dataset.copy);
+          if (target) target.classList.add("is-visible");
+        });
+
+        glyph.addEventListener("mouseleave", () => {
+          const target = document.querySelector("." + glyph.dataset.copy);
+          if (target) target.classList.remove("is-visible");
+        });
+      });
+
+      const tGlyph = document.querySelector(".t-hover");
+      const ridingEffect = document.querySelector(".riding-effect");
+      const whooshSound = document.getElementById("whooshSound");
+
+      if (tGlyph && ridingEffect) {
+        tGlyph.style.cursor = "pointer";
+
+        tGlyph.addEventListener("click", () => {
+          ridingEffect.classList.remove("ride-across");
+          void ridingEffect.offsetWidth;
+          ridingEffect.classList.add("ride-across");
+
+          if (whooshSound) {
+            whooshSound.currentTime = 0;
+            whooshSound.play().catch((err) => {
+              console.log("Whoosh audio did not play:", err);
+            });
+          }
+        });
+      }
+
+      const kGlyph = document.querySelector(".k-hover");
+      const ufo = document.querySelector(".ufo");
+      const ufoSound = document.getElementById("ufoSound");
+
+      if (kGlyph && ufo) {
+        kGlyph.style.cursor = "pointer";
+
+        kGlyph.addEventListener("click", () => {
+          ufo.classList.remove("fly");
+          void ufo.offsetWidth;
+          ufo.classList.add("fly");
+
+          if (ufoSound) {
+            ufoSound.currentTime = 0;
+            ufoSound.play().catch((err) => {
+              console.log("UFO audio did not play:", err);
+            });
+          }
+        });
+      }
+
+      const pGlyph = document.querySelector(".p-hover");
+      const tankEffect = document.querySelector(".tank-effect");
+      const boingSound = document.getElementById("boingSound");
+
+      if (pGlyph && kGlyph && tankEffect) {
+        pGlyph.style.cursor = "pointer";
+
+        pGlyph.addEventListener("click", () => {
+          const kRect = kGlyph.getBoundingClientRect();
+
+          const tankWidth = Math.max(kRect.width * 0.85, 180);
+          const tankHeight = tankWidth * 0.62;
+
+          tankEffect.style.width = tankWidth + "px";
+          tankEffect.style.left = (kRect.left + (kRect.width / 2) - (tankWidth / 2)) + "px";
+          tankEffect.style.top = (kRect.top + (kRect.height / 2) - (tankHeight / 2)) + "px";
+
+          tankEffect.classList.remove("tank-fire");
+          void tankEffect.offsetWidth;
+          tankEffect.classList.add("tank-fire");
+
+          if (boingSound) {
+            boingSound.currentTime = 0;
+            boingSound.play().catch((err) => {
+              console.log("Boing audio did not play:", err);
+            });
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
